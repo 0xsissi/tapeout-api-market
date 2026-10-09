@@ -63,7 +63,7 @@
         <nav class="bp-index" aria-label="项目介绍章节"><button data-brief-jump="brief-problem">使用场景</button><button data-brief-jump="brief-how">工作原理</button><button data-brief-jump="brief-tech">关键机制</button><button data-brief-jump="brief-business">商业模式</button><button data-brief-jump="brief-progress">测试进展</button><div class="bp-reading-progress" aria-hidden="true"></div></nav>
 
         <section class="bp-section" id="brief-problem" aria-labelledby="brief-problem-title">
-          <div class="bp-section-title" data-reveal><span class="bp-kicker" id="brief-problem-title">01 / 使用场景</span></div>
+          <div class="bp-section-title" data-reveal><h2 class="bp-chapter" id="brief-problem-title">01 / 使用场景</h2></div>
           <div class="bp-scenario" data-reveal><span class="bp-kicker">举个例子</span><h3>你做了一个每天帮你整理资料的 Agent。</h3><p>它需要反复调用模型。你希望它找到可用的接口、比较报价，还得控制一天花多少钱。另一边，有人运行着模型节点，愿意把空闲容量挂出来卖。</p><p>TAM 让卖家发布服务，买方网关从同模型、同结算币的卖家里选择。每次调用前锁价，收到完整回答后按报告用量签账单。下面的演示就从这笔调用开始。</p></div>
           <div class="bp-grid-three">
             <article class="bp-card" data-reveal><span class="bp-card-no" data-i18n-raw>01</span><h3>换一家卖家，又要重新接接口？</h3><p>卖家发布模型和报价。买家通过兼容 API 接入，网关负责发现、比较和选择可用节点。</p></article>
@@ -73,7 +73,7 @@
         </section>
 
         <section class="bp-section bp-section-soft" id="brief-how" aria-labelledby="brief-how-title">
-          <div class="bp-section-title" data-reveal><span class="bp-kicker">02 / 工作原理</span><h2 id="brief-how-title">从找到卖家，到卖家收到钱。</h2><p>点击任一步，也可以播放。这里只演示流程，不会调用模型或付款。</p></div>
+          <div class="bp-section-title" data-reveal><h2 class="bp-chapter" id="brief-how-title">02 / 工作原理</h2></div>
           <div class="bp-flow-panel" id="brief-flow-panel" data-reveal>
             <div class="bp-flow-toolbar"><span>调用与结算流程</span><button class="wallet-button" id="brief-play" aria-pressed="false">播放演示</button></div>
             <svg id="brief-scene" class="bp-flow-svg" viewBox="0 0 820 360" role="img" aria-label="买家、卖家、模型与托管池之间的调用和付款流程">
@@ -100,7 +100,7 @@
         </section>
 
         <section class="bp-section" id="brief-tech" aria-labelledby="brief-tech-title">
-          <div class="bp-section-title" data-reveal><span class="bp-kicker">03 / 关键机制</span><h2 id="brief-tech-title">几个关键机制。</h2><p>定价、付款、选路和 AI 操作，各自解决一件具体的事。</p></div>
+          <div class="bp-section-title" data-reveal><h2 class="bp-chapter" id="brief-tech-title">03 / 关键机制</h2></div>
           <div class="bp-tech-grid">
             <article class="bp-card" data-reveal><span class="bp-card-no">01 / AIMM 动态定价</span><h3>卖家设底价，程序按忙闲报价。</h3><p>容量占用上升时自动涨价，空闲时回到底价。每次调用先锁价，回答生成到一半不会临时加价。卖家也可以选择固定价。</p><span class="bp-tag">签名报价</span><span class="bp-tag">调用前锁价</span></article>
             <article class="bp-card" data-reveal><span class="bp-card-no">02 / 链下签名与批量结算</span><h3>先批预算，收到完整回答再批付款。</h3><p>预算存进链上合约，单次意向和付款账单在链下签署。卖家攒多笔账单再收款，减少逐笔上链的开销。</p><div class="bp-batch-demo" aria-label="八张账单合并为一个批次的示意"><div class="bp-receipts" aria-hidden="true"><i>01</i><i>02</i><i>03</i><i>04</i><i>05</i><i>06</i><i>07</i><i>08</i></div><span class="bp-batch-wire" aria-hidden="true"></span><div class="bp-batch-box"><strong>1 个批次</strong><small>合约逐张核验</small></div></div><p class="bp-note">批量示意；实际 Gas 取决于批次大小和网络费用。</p></article>
@@ -115,12 +115,12 @@
         </section>
 
         <section class="bp-section bp-section-soft" id="brief-business" aria-labelledby="brief-value-title">
-          <div class="bp-section-title" data-reveal><span class="bp-kicker">04 / 商业模式</span><h2 id="brief-value-title">服务完成结算后，协议收取一笔费用。</h2><p>目前使用测试币；测试结算不计为商业营收。</p></div>
-          <div class="bp-business-grid"><div class="bp-card bp-fee-card" data-reveal><span class="bp-card-no">当前测试配置</span><h3>100 结算币的服务费，怎样分？</h3><div class="bp-fee-bar" aria-hidden="true"><i></i><i></i></div><div class="bp-fee-split"><span>卖家 <strong data-i18n-raw>99</strong></span><span>协议 <strong data-i18n-raw>1</strong></span></div><p class="bp-note">测试协议费为 1%，Gas 另计。费率可由合约管理员调整。</p></div><div class="bp-business-copy" data-reveal><h3>先验证买卖双方愿不愿意持续使用。</h3><p>先让开发者和 Agent 用户接入，再增加独立卖家。需要观察完成调用量、成功率、重复购买和结算成本，才能判断这门生意能否持续。</p><p>协议收入取决于完成结算的交易额和费率。当前没有公开的商业交易额、留存或营收数据，不用测试网节点数代替这些指标。</p></div></div>
+          <div class="bp-section-title" data-reveal><h2 class="bp-chapter" id="brief-value-title">04 / 商业模式</h2></div>
+          <div class="bp-business-grid"><div class="bp-card bp-fee-card" data-reveal><span class="bp-card-no">当前测试配置</span><h3>100 结算币的服务费，怎样分？</h3><div class="bp-fee-bar" aria-hidden="true"><i></i><i></i></div><div class="bp-fee-split"><span>卖家 <strong data-i18n-raw>99</strong></span><span>协议 <strong data-i18n-raw>1</strong></span></div><p class="bp-note">测试协议费为 1%，Gas 另计。费率可由合约管理员调整。</p></div></div>
         </section>
 
         <section class="bp-section" id="brief-progress" aria-labelledby="brief-progress-title">
-          <div class="bp-section-title" data-reveal><span class="bp-kicker">05 / 测试进展</span><h2 id="brief-progress-title">测试网上能跑通，还要经过真实使用的检验。</h2><p>当前统一在 BSC 测试网。下面是运行状态和接下来需要完成的事。</p></div>
+          <div class="bp-section-title" data-reveal><h2 class="bp-chapter" id="brief-progress-title">05 / 测试进展</h2></div>
           <div class="bp-live-strip"><span class="bp-live-label"><span class="status-dot" aria-hidden="true"></span>当前可见网络</span><div><strong data-brief-metric="sellers" data-i18n-raw>—</strong><span>卖家</span></div><div><strong data-brief-metric="models" data-i18n-raw>—</strong><span>模型</span></div><div><strong data-brief-metric="nodes" data-i18n-raw>—</strong><span>入口节点</span></div><small>来自市场实时观察，不代表累计用户或营收。</small></div>
           <div class="bp-status-grid"><article class="bp-card" data-reveal><span class="bp-status-tag">已实现 / 内测</span><h3>买卖节点、调用和测试币结算</h3><ul><li>P2P 发现、买卖网关、流式调用</li><li>AIMM 动态报价与调用前锁价</li><li>tUSDC / tBEM 与独立托管池</li><li>交付后签名、批量收款、预算与权限</li><li>中英文客户端、市场与测试币领取</li><li>模型来源证明生成与验证接口</li></ul></article><article class="bp-card" data-reveal><span class="bp-status-tag bp-status-next">下一步 / 待验证</span><h3>更多卖家、持续运行和安全检查</h3><ul><li>增加独立卖家，验证持续供给与调用稳定性</li><li>记录调用成功率、延迟、重复使用和结算成本</li><li>独立安全审查与公开交易的争议机制</li><li>接入真实 zkTLS 验证与用量核验</li></ul></article></div>
           <details class="bp-boundaries"><summary>使用前需要知道的几件事</summary><p>目前模型来源和用量仍由卖家声明，真实 zkTLS 验证尚未接入。完整收到回答不证明答案正确。当前内测由卖家审核买家，公开交易争议机制仍待完善。</p><p>引导、中继、网站和上游模型仍有服务器组件。买方自主选路和授权付款，并没有把大模型变成完全去中心化计算。</p><p>BEM 与 USDC 分别报价结算，不会自动兑换。测试币不代表真实资产，主网尚未启用。</p></details>
