@@ -1232,7 +1232,6 @@
   "链上 Agent 的 API 采购": "API purchasing for blockchain agents",
   "比如，一个带钱包的 Agent 监听合约事件、处理 DAO 提案，需要调用不同模型。主人设好预算和权限，TAM 的买方网关就能比价选卖家、锁定报价，完整收到回答后签账单。": "For example, a wallet-enabled agent monitors contract events and processes DAO proposals, calling different models when needed. Its owner sets the budget and permissions. TAM's buyer gateway compares sellers, locks a quote and signs a receipt after receiving the complete response.",
   "预算由链上合约托管，以 USDC 或 BEM 结算。卖家也可以让自己的 Agent 管理报价和收款。": "Budgets sit in on-chain escrow and settle in USDC or BEM. Sellers can also use agents to manage quotes and collect payments.",
-  "当前 Agent 在链下运行，链上负责预算托管与结算。": "The agent currently runs off-chain. Blockchain contracts handle budget custody and settlement.",
   "换一家卖家，又要重新接接口？": "Does switching sellers mean another integration?",
   "卖家发布模型和报价。买家通过兼容 API 接入，网关负责发现、比较和选择可用节点。": "Sellers announce models and quotes. Buyers use a compatible API; their gateway discovers, compares and selects available nodes.",
   "闲的时候想接单，忙的时候顾不过来。": "You want more orders when idle, and fewer when busy.",
