@@ -1,0 +1,23 @@
+{
+  "chainId": 97,
+  "rpcUrl": "https://bsc-testnet-dataseed.bnbchain.org",
+  "testToken": "0x6DD0Be28736F638844499B019DBaacc5897dAAC2",
+  "testTokenSymbol": "tBEM",
+  "decimals": 8,
+  "escrowPool": "0xfd95F0cA22D6c2Ca8dE3Bd42f88c6b94ABf6724e",
+  "protocolFeeBps": 100,
+  "miningEnabled": false,
+  "network": "BNB Smart Chain Testnet",
+  "testCurrencyOnly": true,
+  "compiler": "0.8.26+commit.8a97fa7a.Emscripten.clang",
+  "evmVersion": "cancun",
+  "optimizer": {
+    "enabled": true,
+    "runs": 200
+  },
+  "tokenBytecodeHash": "0x39dd5b1ecdc2ca770b536af448ddd6771052d34229725151a131a07afffc1b3d",
+  "poolBytecodeHash": "0x2942a6399e579b1cfb753dc72915ee712a9ef460450b091e5715498aae3640c8",
+  "tokenRuntimeCodeHash": "0xca2690ad2797f9aa70a2c7a08ddb09ae64afa3070f36e69c7009a5a81b2dfa8f",
+  "poolRuntimeCodeHash": "0xaa2512bdd8d11e7b2b2988f4dce9c5e99e71f6c662863ba11d24f78efb6828d3",
+  "sourceVerification": "Runtime properties checked via RPC; explorer source verification not submitted"
+}

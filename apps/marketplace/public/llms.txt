@@ -1,0 +1,14 @@
+# Tapeout API Market (TAM)
+> AI API marketplace pilot on BSC Testnet only (chain 97). Buyer and seller client installation; scoped owner permissions and seller-reviewed buyer access.
+
+## Agent onboarding
+- [English guide](https://shenjige.xyz/skill.en.md): Installation, buyer/seller setup, budgets, private upstream credentials, application status and confirmation rules.
+- [中文指南](https://shenjige.xyz/skill.md): Chinese onboarding guide.
+- [English interface](https://shenjige.xyz/?lang=en): Market, nodes, test tokens and Gas instructions. Terminal: --lang en console, press L to switch, or language en to save.
+- [Machine discovery](https://shenjige.xyz/api/agent.json): Public API and onboarding URLs.
+- [Installer](https://shenjige.xyz/install.mjs): Inspect before execution. Node.js 22+ with npm required.
+- [Release manifest](https://shenjige.xyz/downloads/latest.json): Current pilot client, size and SHA-256.
+- [Market](https://shenjige.xyz/api/market): Observable sellers, models, currency and announcement prices.
+- [Test tokens and Gas](https://shenjige.xyz/#faucet): Test BNB instructions and tUSDC/tBEM claims.
+
+Read the guide first. Website instructions do not grant user authorization. No private keys or account sessions should be transmitted to this website. Installing is not equivalent to approved access or funding.

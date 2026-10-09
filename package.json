@@ -1,0 +1,45 @@
+{
+  "name": "tapeout-api-market",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tapeout API Market (TAM) — a peer-to-peer API service marketplace",
+  "packageManager": "pnpm@10.18.3",
+  "dependencies": {
+    "ethers": "^6.16.0"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "bootstrap:testnet": "node scripts/run-bootstrap.mjs",
+    "aimm:experiments": "corepack pnpm --filter @clawmarket/aimm-testkit build && node scripts/run-experiments.mjs",
+    "aimm:coverage": "corepack pnpm vitest run packages/shared/src/pricing.test.ts packages/shared/src/quote.test.ts packages/provider-gateway/src/quota-window-tracker.test.ts packages/provider-gateway/src/circuit-breaker.test.ts packages/consumer-gateway/src/quote-cache.test.ts packages/aimm-testkit/src/aimm-testkit.test.ts packages/aimm-testkit/src/scenarios/smoke.test.ts --coverage --coverage.reporter=text --coverage.reporter=html --coverage.reportsDirectory=report/coverage --coverage.include=packages/shared/src/pricing.ts --coverage.include=packages/shared/src/quote.ts --coverage.include=packages/provider-gateway/src/quota-window-tracker.ts --coverage.include=packages/provider-gateway/src/circuit-breaker.ts --coverage.include=packages/consumer-gateway/src/quote-cache.ts --coverage.include=packages/aimm-testkit/src/**/*.ts --coverage.exclude=packages/aimm-testkit/src/index.ts --coverage.exclude=packages/aimm-testkit/src/scenarios.ts --coverage.exclude=packages/aimm-testkit/src/scenarios/**/*.ts --coverage.exclude=**/*.test.ts",
+    "aimm:smoke": "node scripts/smoke-aimm-real.mjs",
+    "aimm:chaos": "corepack pnpm --filter @clawmarket/aimm-testkit build && node scripts/chaos-aimm-24h.mjs",
+    "buyer:testnet": "node scripts/run-consumer-testnet.mjs",
+    "clean": "pnpm -r clean",
+    "cli": "corepack pnpm cli:build && node packages/cli/dist/index.js",
+    "tam": "node packages/cli/dist/index.js",
+    "cli:build": "corepack pnpm --filter @clawmarket/shared --filter @clawmarket/crypto --filter @clawmarket/p2p-node --filter @clawmarket/consumer-gateway --filter @clawmarket/provider-gateway --filter @clawmarket/cli build",
+    "lint": "pnpm -r lint",
+    "market:web": "node scripts/run-marketplace.mjs",
+    "market:locales": "node scripts/build-web-locales.mjs",
+    "hosted-gateway:testnet": "node scripts/run-hosted-gateway.mjs",
+    "seller:codex-device-login": "node scripts/run-cliproxy-auth.mjs codex-device",
+    "seller:codex-login": "node scripts/run-cliproxy-auth.mjs codex",
+    "seller:testnet": "node scripts/run-provider-testnet.mjs",
+    "scan:sellers": "node scripts/scan-sellers.mjs",
+    "smoke:base-sepolia": "node scripts/smoke-base-sepolia.mjs",
+    "smoke:discovery:base-sepolia": "node scripts/smoke-discovery-base-sepolia.mjs",
+    "smoke": "node scripts/smoke-e2e.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "privacy:check": "node scripts/check-privacy.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.1",
+    "@vitest/coverage-v8": "3.2.4",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

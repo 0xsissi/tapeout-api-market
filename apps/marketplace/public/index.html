@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tapeout API Market · 去中心化 AI API 市场">
+  <title>Tapeout API Market · BSC Testnet</title>
+  <link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/project-brief.css"><script type="module" src="/app.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#about"><span class="brand-mark">T</span><span>Tapeout<span class="brand-sub">API Market</span></span></a>
+    <div class="workspace">BSC 测试网 <span class="small-tag">CHAIN 97</span></div>
+    <nav aria-label="主导航">
+      <button class="nav-item active" data-page="about" aria-current="page"><span aria-hidden="true">◇</span> 项目介绍</button>
+      <button class="nav-item" data-page="market"><span aria-hidden="true">▦</span> API 市场 <span class="nav-count" id="nav-sellers">—</span></button>
+      <button class="nav-item" data-page="nodes"><span aria-hidden="true">⌘</span> 网络节点</button>
+      <button class="nav-item" data-page="faucet"><span aria-hidden="true">◉</span> 领取测试币</button>
+      <button class="nav-item" data-page="guide"><span aria-hidden="true">↗</span> 快速开始</button>
+      <button class="nav-item" data-page="ai"><span aria-hidden="true">⌁</span> AI 接入</button>
+    </nav>
+    <div class="sidebar-label">开发者</div>
+    <a class="nav-item" href="/api/agent.json" target="_blank" rel="noreferrer"><span aria-hidden="true">⌁</span> API / JSON <span class="external">↗</span></a>
+    <a class="nav-item" href="https://github.com/0xsissi/tapeout-api-market" target="_blank" rel="noreferrer"><span aria-hidden="true">⌂</span> GitHub <span class="external">↗</span></a>
+    <div class="sidebar-bottom"><span class="status-dot"></span> BSC Testnet</div>
+  </aside>
+  <div class="app">
+    <header class="topbar"><div class="breadcrumb">Tapeout API Market <span>/</span> <strong id="breadcrumb-page">项目介绍</strong></div><div class="topbar-actions"><div class="language-switch" role="group" aria-label="Language / 界面语言" data-i18n-raw><button type="button" data-language="zh" lang="zh" aria-label="中文" aria-pressed="false">中</button><button type="button" data-language="en" lang="en" aria-label="English" aria-pressed="false">EN</button></div><button class="wallet-button" id="wallet-connect">连接钱包 <span>↗</span></button></div></header>
+    <main>
+      <section id="page-market" class="page" hidden>
+        <div class="hero">
+          <div class="hero-copy">
+            <span class="pilot-badge">内测中 · 测试币，不涉及真实资产</span>
+            <h1><span>找到合适的 AI 服务，</span><span>按实际用量付费</span></h1>
+            <p class="hero-description">比较模型与价格，接入应用或 AI Agent。<br>先收到完整回答，再确认付款。</p>
+            <div class="hero-actions"><button class="primary" data-browse>浏览卖家</button><button class="wallet-button" data-go="faucet">先领测试币</button></div><button class="text-button market-about-link" data-go="about">了解 TAM 如何运作 →</button>
+          </div>
+          <div class="start-card">
+            <h2>三步开始</h2>
+            <button class="start-step" data-go="faucet"><span class="step-number">1</span><span><strong>领取测试币</strong><small>领取 tUSDC / tBEM，准备 tBNB 手续费。</small></span></button>
+            <button class="start-step" data-go="guide"><span class="step-number">2</span><span><strong>充值到托管池</strong><small>在 TAM 客户端存入对应结算币。</small></span></button>
+            <button class="start-step" data-browse><span class="step-number">3</span><span><strong>选卖家，调用模型</strong><small>收到完整回答后，确认实际费用。</small></span></button>
+          </div>
+        </div>
+        <section id="market-list" class="market-list" aria-labelledby="market-heading">
+          <div class="section-heading"><div><h2 id="market-heading">可用服务</h2><span class="updated" id="last-updated">正在读取网络…</span></div><div class="market-meta"><span><strong id="stat-sellers">—</strong> 卖家</span><span><strong id="stat-models">—</strong> 模型</span><span><strong id="stat-nodes">—</strong> 入口节点</span></div></div>
+          <p class="unit-note">价格单位：结算币 / 百万 Token</p>
+          <div class="filters"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索模型或卖家" aria-label="搜索模型或卖家"></label><div class="segments" aria-label="筛选结算币"><button class="selected" data-currency="all">全部</button><button data-currency="USDC">USDC</button><button data-currency="BEM">BEM</button></div><select id="sort" aria-label="排序"><option value="recent">最近可见</option><option value="price">输入价格由低到高</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>模型 / 服务</th><th>卖家</th><th class="number-column">输入价格</th><th class="number-column">输出价格</th><th>结算币</th><th>状态</th><th><span class="sr-only">操作</span></th></tr></thead><tbody id="seller-rows"></tbody></table><div class="empty" id="market-empty"><h3>正在查找卖家…</h3><p>请稍候。</p></div></div>
+          <p class="table-note" id="price-note">表中为输入、输出底价；随负载调价的服务在调用前锁定实际价格。USDC 与 BEM 请分别比较。</p>
+        </section>
+        <div class="bottom-grid"><button class="callout" data-go="faucet"><div><h3>第一次体验？先领测试币</h3><p>20 tUSDC / 100 tBEM</p></div><span aria-hidden="true">↗</span></button><button class="callout" data-go="ai"><div><h3>让你的 AI 帮你接入</h3><p>复制指令，安装并配置客户端。</p></div><span aria-hidden="true">↗</span></button></div>
+        <p class="market-caption">内测需卖家审核；可连接表示最近读到公告，模型来源由卖家声明。</p>
+      </section>
+      <section id="page-about" class="page brief bp">
+        <div class="bp-hero">
+          <div class="bp-hero-grid" aria-hidden="true"></div><div class="bp-hero-halo" aria-hidden="true"></div>
+          <div class="bp-eyebrow"><span class="status-dot" aria-hidden="true"></span><span>BSC 测试网内测</span></div>
+          <h1 class="bp-brand-title" data-i18n-raw>TAPEOUT API MARKET</h1>
+          <p class="bp-lead bp-positioning">去中心化 AI API 市场</p>
+          <div class="bp-actions"><button class="primary" data-go="market">看看现在有哪些卖家 →</button><button class="wallet-button" data-brief-jump="brief-how">看一笔调用怎么完成 ↓</button></div>
+          <div class="bp-facts"><div><strong data-i18n-raw>P2P</strong><span>买方网关自己选卖家</span></div><div><strong data-i18n-raw>USDC / BEM</strong><span>卖家自己选结算币</span></div><div><strong data-i18n-raw>1%</strong><span>当前测试配置的协议费</span></div><div><strong data-i18n-raw>AI Agent</strong><span>调用、补预算、收款</span></div></div>
+        </div>
+        <nav class="bp-index" aria-label="项目介绍章节"><button data-brief-jump="brief-problem">使用场景</button><button data-brief-jump="brief-how">工作原理</button><button data-brief-jump="brief-tech">关键机制</button><button data-brief-jump="brief-business">商业模式</button><button data-brief-jump="brief-progress">测试进展</button><div class="bp-reading-progress" aria-hidden="true"></div></nav>
+
+        <section class="bp-section" id="brief-problem" aria-labelledby="brief-problem-title">
+          <div class="bp-section-title" data-reveal><span class="bp-kicker" id="brief-problem-title">01 / 使用场景</span></div>
+          <div class="bp-scenario" data-reveal><span class="bp-kicker">举个例子</span><h3>你做了一个每天帮你整理资料的 Agent。</h3><p>它需要反复调用模型。你希望它找到可用的接口、比较报价，还得控制一天花多少钱。另一边，有人运行着模型节点，愿意把空闲容量挂出来卖。</p><p>TAM 让卖家发布服务，买方网关从同模型、同结算币的卖家里选择。每次调用前锁价，收到完整回答后按报告用量签账单。下面的演示就从这笔调用开始。</p></div>
+          <div class="bp-grid-three">
+            <article class="bp-card" data-reveal><span class="bp-card-no" data-i18n-raw>01</span><h3>换一家卖家，又要重新接接口？</h3><p>卖家发布模型和报价。买家通过兼容 API 接入，网关负责发现、比较和选择可用节点。</p></article>
+            <article class="bp-card" data-reveal><span class="bp-card-no" data-i18n-raw>02</span><h3>闲的时候想接单，忙的时候顾不过来。</h3><p>卖家设底价和调价规则，AIMM 跟着容量占用调整报价，也可以一直用固定价。</p></article>
+            <article class="bp-card" data-reveal><span class="bp-card-no" data-i18n-raw>03</span><h3>回答传到一半断了，这钱付不付？</h3><p>买方先检查回答是否完整、非空和未超预算。检查失败，就不签最终付款账单。</p></article>
+          </div>
+        </section>
+
+        <section class="bp-section bp-section-soft" id="brief-how" aria-labelledby="brief-how-title">
+          <div class="bp-section-title" data-reveal><span class="bp-kicker">02 / 工作原理</span><h2 id="brief-how-title">从找到卖家，到卖家收到钱。</h2><p>点击任一步，也可以播放。这里只演示流程，不会调用模型或付款。</p></div>
+          <div class="bp-flow-panel" id="brief-flow-panel" data-reveal>
+            <div class="bp-flow-toolbar"><span>调用与结算流程</span><button class="wallet-button" id="brief-play" aria-pressed="false">播放演示</button></div>
+            <svg id="brief-scene" class="bp-flow-svg" viewBox="0 0 820 360" role="img" aria-label="买家、卖家、模型与托管池之间的调用和付款流程">
+              <defs><pattern id="bp-flow-grid" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8"/></pattern></defs>
+              <rect class="bp-svg-grid" width="820" height="360" fill="url(#bp-flow-grid)"/>
+              <path id="flow-discover" class="bp-flow-path" d="M410 100V60H125V100"/>
+              <path id="flow-request" class="bp-flow-path" d="M230 145H305"/>
+              <path id="flow-upstream" class="bp-flow-path" d="M515 145H590"/>
+              <path id="flow-deposit" class="bp-flow-path bp-flow-money" d="M125 190V307H305"/>
+              <path id="flow-collect" class="bp-flow-path bp-flow-money" d="M410 190V270"/>
+              <g class="bp-flow-discovery"><rect x="290" y="14" width="240" height="42" rx="21"/><text x="410" y="40">发现网络 / 引导与中继节点</text></g>
+              <g id="flow-node-buyer" class="bp-flow-node"><rect x="20" y="100" width="210" height="90" rx="16"/><text x="125" y="140">买家客户端</text><text x="125" y="166">选卖家，控预算</text></g>
+              <g id="flow-node-seller" class="bp-flow-node"><rect x="305" y="100" width="210" height="90" rx="16"/><text x="410" y="140">卖家节点</text><text x="410" y="166">接模型，交付结果</text></g>
+              <g id="flow-node-model" class="bp-flow-node"><rect x="590" y="100" width="210" height="90" rx="16"/><text x="695" y="140">AI 模型服务</text><text x="695" y="166">生成回答</text></g>
+              <g id="flow-node-pool" class="bp-flow-node bp-flow-pool"><rect x="305" y="270" width="210" height="75" rx="16"/><text x="410" y="302">链上托管池</text><text x="410" y="327">充值预算 · 批量收款</text></g>
+              <text class="bp-flow-label" x="268" y="213">链下请求 / 回答 / 签名</text><text class="bp-flow-label bp-flow-chain-label" x="637" y="307">链上充值 / 收款 · BSC 97</text>
+              <g id="brief-flow-packet" class="bp-flow-packet" aria-hidden="true"><circle r="13" class="bp-packet-halo"/><circle r="5"/></g>
+            </svg>
+            <div class="bp-flow-mobile"><div class="bp-mobile-node">买家客户端</div><span aria-hidden="true">↔</span><div class="bp-mobile-node">卖家节点</div><span aria-hidden="true">↔</span><div class="bp-mobile-node">AI 模型服务</div><div class="bp-mobile-pool">链上托管池</div><p>充值和收款上链，请求与付款签名在链下完成。</p></div>
+            <div class="bp-step-buttons" role="group" aria-label="选择交易步骤"><button data-brief-step="0" aria-pressed="true"><span data-i18n-raw>01</span><strong>找服务</strong><i aria-hidden="true"></i></button><button data-brief-step="1" aria-pressed="false"><span data-i18n-raw>02</span><strong>准备预算</strong><i aria-hidden="true"></i></button><button data-brief-step="2" aria-pressed="false"><span data-i18n-raw>03</span><strong>发送问题</strong><i aria-hidden="true"></i></button><button data-brief-step="3" aria-pressed="false"><span data-i18n-raw>04</span><strong>收到回答</strong><i aria-hidden="true"></i></button><button data-brief-step="4" aria-pressed="false"><span data-i18n-raw>05</span><strong>签付款账单</strong><i aria-hidden="true"></i></button><button data-brief-step="5" aria-pressed="false"><span data-i18n-raw>06</span><strong>卖家批量收款</strong><i aria-hidden="true"></i></button></div>
+            <div class="bp-flow-detail"><article data-brief-detail="0"><h3>看看谁在卖这个模型，报价多少。</h3><p>卖家发布服务。引导与中继帮助发现和连接，买方网关比较同模型、同结算币的报价与可用状态，选择卖家。</p></article><article data-brief-detail="1" hidden><h3>先存一笔预算，每次调用前再定上限。</h3><p>买家把结算币存进托管合约。调用前锁价，签一份限定本次最高费用的预算意向；这份意向在链下签署，不能直接拿去收款。</p></article><article data-brief-detail="2" hidden><h3>问题发给卖家，卖家调用模型。</h3><p>请求正文在买卖网关之间加密传输。卖家使用自己接入的模型服务生成回答，上游密钥保留在卖家端。</p></article><article data-brief-detail="3" hidden><h3>回答逐段回来，买方检查是否收全。</h3><p>完整、非空且报告用量未超预算，才进入付款确认。断流或检查失败，不签最终付款账单；完整收到不代表答案一定正确。</p></article><article data-brief-detail="4" hidden><h3>收到完整回答，再签实际费用。</h3><p>买方按锁定价格和报告用量计算费用，在你授权的规则内签付款账单。这一步不上链，不为每次调用单独付 Gas。</p></article><article data-brief-detail="5" hidden><h3>账单攒成一批，再上链收款。</h3><p>卖家保存签名账单，批量提交给合约。合约逐张核验、阻止重复收款，再从买家的托管预算支付。充值、收款和退回预算仍需 Gas。</p></article></div>
+          </div>
+          <p class="bp-note">网站展示卖家和报价；买方网关自己选路、签名。引导与中继帮助连接，不统一分派订单。</p>
+        </section>
+
+        <section class="bp-section" id="brief-tech" aria-labelledby="brief-tech-title">
+          <div class="bp-section-title" data-reveal><span class="bp-kicker">03 / 关键机制</span><h2 id="brief-tech-title">几个关键机制。</h2><p>定价、付款、选路和 AI 操作，各自解决一件具体的事。</p></div>
+          <div class="bp-tech-grid">
+            <article class="bp-card" data-reveal><span class="bp-card-no">01 / AIMM 动态定价</span><h3>卖家设底价，程序按忙闲报价。</h3><p>容量占用上升时自动涨价，空闲时回到底价。每次调用先锁价，回答生成到一半不会临时加价。卖家也可以选择固定价。</p><span class="bp-tag">签名报价</span><span class="bp-tag">调用前锁价</span></article>
+            <article class="bp-card" data-reveal><span class="bp-card-no">02 / 链下签名与批量结算</span><h3>先批预算，收到完整回答再批付款。</h3><p>预算存进链上合约，单次意向和付款账单在链下签署。卖家攒多笔账单再收款，减少逐笔上链的开销。</p><div class="bp-batch-demo" aria-label="八张账单合并为一个批次的示意"><div class="bp-receipts" aria-hidden="true"><i>01</i><i>02</i><i>03</i><i>04</i><i>05</i><i>06</i><i>07</i><i>08</i></div><span class="bp-batch-wire" aria-hidden="true"></span><div class="bp-batch-box"><strong>1 个批次</strong><small>合约逐张核验</small></div></div><p class="bp-note">批量示意；实际 Gas 取决于批次大小和网络费用。</p></article>
+            <article class="bp-card" data-reveal><span class="bp-card-no">03 / 去中心化节点</span><h3>买方自己比价、选卖家。</h3><p>服务和报价通过 P2P 网络传播。买方网关决定连接哪个卖家，没有中心调度服务器替它分派订单。引导和中继负责帮助连接。</p><span class="bp-tag">公开报价</span><span class="bp-tag">买方自主选路</span></article>
+            <article class="bp-card" data-reveal><span class="bp-card-no">04 / AI 原生</span><h3>AI 可以替你操作，额度和权限由你定。</h3><p>你的 AI 可以调用服务、补充预算、收款和提议改价。你设可用模型、单次与每日额度和操作权限，程序按规则执行并记录结果。</p><span class="bp-tag">兼容 API 与 SDK</span><span class="bp-tag">本地管理接口</span></article>
+            <article class="bp-card bp-zk-card" data-reveal><div><span class="bp-card-no">05 / ZK 接口已预留</span><h3>卖家说是官方模型，后续怎么查？</h3><p>已留好证明生成和买方验证接口，供后续接入 zkTLS，核验回答与指定官方服务、本次请求的关联。买方可要求验证通过再签付款账单。</p></div><div class="bp-zk-status"><span class="status-dot" aria-hidden="true"></span><strong>接口已预留</strong><span>真实 zkTLS 验证待接入</span></div></article>
+          </div>
+          <div class="bp-pricing" data-reveal>
+            <div class="bp-pricing-copy"><span class="bp-kicker">AIMM / 拖动看看</span><h3>占用一半容量时，会报什么价？</h3><p>下面用 5 USDC 的底价举例。调价力度为 1、容量占用 50% 时，报价是 10 USDC／百万 Token。</p><div class="bp-formula" data-i18n-raw>P = P₀ ÷ (1 − u)<sup>α</sup></div><div class="bp-formula-key"><span>P₀：底价</span><span>u：容量占用</span><span>α：调价力度</span></div><details class="bp-pricing-details"><summary>占用怎么算？输入输出价格怎么变？</summary><p>有上游配额跟踪时，用配额使用比例；否则用处理中的请求数除以最大并发数。不是 CPU 使用率。</p><p>输入和输出费率按同一倍数调整；BEM 使用相同公式，单位换成 BEM。卖家可以设置最高价。</p></details></div>
+            <div class="bp-demo-controls"><div class="bp-alpha-buttons" role="group" aria-label="调价力度"><span>调价力度</span><button data-brief-alpha="0" aria-pressed="false">0 · 固定价</button><button data-brief-alpha="1" aria-pressed="true">1</button><button data-brief-alpha="2" aria-pressed="false">2</button></div><svg class="bp-price-chart" viewBox="0 0 480 250" role="img" aria-label="容量占用与价格倍数示意图"><g class="bp-chart-grid"><path d="M48 32H454M48 92H454M48 152H454M48 212H454"/></g><g class="bp-chart-labels" data-i18n-raw><text x="38" y="36" text-anchor="end" data-price-axis="top">5×</text><text x="38" y="96" text-anchor="end" data-price-axis="middle">3.67×</text><text x="38" y="156" text-anchor="end" data-price-axis="low">2.33×</text><text x="38" y="216" text-anchor="end">1×</text><text x="48" y="238">0%</text><text x="454" y="238" text-anchor="end">80%</text></g><path class="bp-chart-baseline" d="M48 212H454"/><path id="brief-price-curve" class="bp-chart-curve"/><line id="brief-price-guide" class="bp-chart-guide" x1="251" x2="251" y1="32" y2="212"/><circle id="brief-price-dot" class="bp-chart-dot" cx="251" cy="167" r="6"/></svg><label class="bp-load-label" for="brief-load"><span>容量占用</span><output id="brief-load-value" for="brief-load" data-i18n-raw>50%</output></label><input id="brief-load" type="range" min="0" max="80" step="5" value="50"><div class="bp-price-result"><span>当前示例报价</span><output id="brief-price-value" for="brief-load" data-i18n-raw>10 USDC</output></div><p class="bp-note">单位：USDC／百万 Token。曲线纵轴随调价力度调整；这是示例，不是卖家实时报价。</p></div>
+          </div>
+        </section>
+
+        <section class="bp-section bp-section-soft" id="brief-business" aria-labelledby="brief-value-title">
+          <div class="bp-section-title" data-reveal><span class="bp-kicker">04 / 商业模式</span><h2 id="brief-value-title">服务完成结算后，协议收取一笔费用。</h2><p>目前使用测试币；测试结算不计为商业营收。</p></div>
+          <div class="bp-business-grid"><div class="bp-card bp-fee-card" data-reveal><span class="bp-card-no">当前测试配置</span><h3>100 结算币的服务费，怎样分？</h3><div class="bp-fee-bar" aria-hidden="true"><i></i><i></i></div><div class="bp-fee-split"><span>卖家 <strong data-i18n-raw>99</strong></span><span>协议 <strong data-i18n-raw>1</strong></span></div><p class="bp-note">测试协议费为 1%，Gas 另计。费率可由合约管理员调整。</p></div><div class="bp-business-copy" data-reveal><h3>先验证买卖双方愿不愿意持续使用。</h3><p>先让开发者和 Agent 用户接入，再增加独立卖家。需要观察完成调用量、成功率、重复购买和结算成本，才能判断这门生意能否持续。</p><p>协议收入取决于完成结算的交易额和费率。当前没有公开的商业交易额、留存或营收数据，不用测试网节点数代替这些指标。</p></div></div>
+        </section>
+
+        <section class="bp-section" id="brief-progress" aria-labelledby="brief-progress-title">
+          <div class="bp-section-title" data-reveal><span class="bp-kicker">05 / 测试进展</span><h2 id="brief-progress-title">测试网上能跑通，还要经过真实使用的检验。</h2><p>当前统一在 BSC 测试网。下面是运行状态和接下来需要完成的事。</p></div>
+          <div class="bp-live-strip"><span class="bp-live-label"><span class="status-dot" aria-hidden="true"></span>当前可见网络</span><div><strong data-brief-metric="sellers" data-i18n-raw>—</strong><span>卖家</span></div><div><strong data-brief-metric="models" data-i18n-raw>—</strong><span>模型</span></div><div><strong data-brief-metric="nodes" data-i18n-raw>—</strong><span>入口节点</span></div><small>来自市场实时观察，不代表累计用户或营收。</small></div>
+          <div class="bp-status-grid"><article class="bp-card" data-reveal><span class="bp-status-tag">已实现 / 内测</span><h3>买卖节点、调用和测试币结算</h3><ul><li>P2P 发现、买卖网关、流式调用</li><li>AIMM 动态报价与调用前锁价</li><li>tUSDC / tBEM 与独立托管池</li><li>交付后签名、批量收款、预算与权限</li><li>中英文客户端、市场与测试币领取</li><li>模型来源证明生成与验证接口</li></ul></article><article class="bp-card" data-reveal><span class="bp-status-tag bp-status-next">下一步 / 待验证</span><h3>更多卖家、持续运行和安全检查</h3><ul><li>增加独立卖家，验证持续供给与调用稳定性</li><li>记录调用成功率、延迟、重复使用和结算成本</li><li>独立安全审查与公开交易的争议机制</li><li>接入真实 zkTLS 验证与用量核验</li></ul></article></div>
+          <details class="bp-boundaries"><summary>使用前需要知道的几件事</summary><p>目前模型来源和用量仍由卖家声明，真实 zkTLS 验证尚未接入。完整收到回答不证明答案正确。当前内测由卖家审核买家，公开交易争议机制仍待完善。</p><p>引导、中继、网站和上游模型仍有服务器组件。买方自主选路和授权付款，并没有把大模型变成完全去中心化计算。</p><p>BEM 与 USDC 分别报价结算，不会自动兑换。测试币不代表真实资产，主网尚未启用。</p></details>
+        </section>
+        <div class="bp-cta" data-reveal><span class="bp-kicker">开始体验</span><h2>自己跑一笔试试。</h2><p>先领测试币，也可以让你的 AI 按接入说明配置客户端。</p><div class="bp-actions"><button class="primary" data-go="faucet">领取测试币 →</button><button class="wallet-button" data-go="ai">让 AI 帮我接入 →</button></div></div>
+      </section>
+
+      <section id="page-nodes" class="page" hidden>
+        <div class="network-heading"><div><h1>网络节点</h1><p class="subtitle">入口帮助连接，卖家提供模型。页面每 15 秒自动刷新。</p></div><button class="wallet-button network-refresh" data-refresh-market>刷新</button></div>
+        <p class="network-updated" id="network-updated" role="status">正在读取网络…</p>
+        <section class="network-group" aria-labelledby="network-entry-title"><div class="section-heading"><h2 id="network-entry-title">入口与中继</h2><span class="network-count" id="network-entry-count">—</span></div><div class="node-grid" id="node-cards"></div></section>
+        <section class="network-group" aria-labelledby="network-seller-title"><div class="section-heading"><h2 id="network-seller-title">已发现的卖家</h2><span class="network-count" id="network-seller-count">—</span></div><div class="node-grid" id="seller-node-cards"></div><div class="empty" id="seller-nodes-empty"><h3>暂未发现卖家</h3><p>卖家连接公网入口并发布服务后，会在发现完成时出现在这里。</p></div></section>
+        <p class="market-caption">这里显示当前观察节点发现的卖家，包含通过中继连接的本机卖家，不代表全网完整名单。</p>
+      </section>
+      <section id="page-faucet" class="page" hidden>
+        <h1>第一次体验？先领测试币</h1><p class="subtitle">每种币每个钱包 24 小时可领一次，仅用于 BSC 测试网。</p>
+        <div class="faucet-grid">
+          <article class="token-card"><span class="currency-badge usdc">tUSDC</span><h2>20</h2><p>体验 USDC 报价与结算</p><button class="primary claim-button" data-claim="USDC">领取 tUSDC</button><button class="text-button add-token" data-token="USDC">添加代币到钱包</button></article>
+          <article class="token-card"><span class="currency-badge bem">tBEM</span><h2>100</h2><p>体验 BEM 原生报价与结算</p><button class="primary claim-button" data-claim="BEM">领取 tBEM</button><button class="text-button add-token" data-token="BEM">添加代币到钱包</button></article>
+          <article class="token-card gas-card"><span class="currency-badge gas">tBNB · Gas</span><h2>手续费</h2><p>充值和结算需要少量 tBNB</p><button class="wallet-button" id="show-gas">查看领取方法</button><span class="card-hint">测试币领取无需 Gas</span></article>
+        </div>
+        <div id="faucet-status" class="notice" role="status">正在检查领币服务…</div><div id="claim-result" class="notice" hidden></div>
+        <div class="note"><span aria-hidden="true">ⓘ</span><p>tUSDC 是 TAM 自建测试币，非 Circle USDC；tBEM 与主网 BEM 独立。签名验证钱包，不授权花费代币。</p></div>
+        <details class="gas-panel" id="gas-help">
+          <summary>如何领取测试 BNB（tBNB）</summary><p class="gas-intro">领到 tBNB 后，在同一个钱包中给结算池充值。</p>
+          <div class="gas-actions"><a class="primary" href="https://faucet.quicknode.com/binance-smart-chain/bnb-testnet" target="_blank" rel="noreferrer">QuickNode 水龙头 ↗</a><button class="wallet-button" id="gas-network">切换 / 添加 BSC 测试网</button><button class="wallet-button" id="gas-copy-address">复制我的钱包地址</button></div>
+          <ol class="gas-instructions"><li>复制钱包地址，打开水龙头，选择 BSC Testnet。</li><li>粘贴地址或连接钱包，按页面提示完成验证。</li><li>到账后，在 BSC 测试网查看 BNB 余额。</li></ol>
+          <p class="gas-eligibility">领取条件和额度以水龙头页面为准。</p>
+          <details class="gas-alternatives"><summary>其他领取入口</summary><ul><li><a href="https://www.bnbchain.org/en/testnet-faucet" target="_blank" rel="noreferrer">BNB Chain 官方水龙头 ↗</a></li><li><a href="https://faucet.chainstack.com/bnb-testnet-faucet" target="_blank" rel="noreferrer">Chainstack 水龙头 ↗</a></li><li><a href="https://docs.bnbchain.org/bnb-smart-chain/developers/faucet/" target="_blank" rel="noreferrer">官方领取说明 ↗</a></li></ul></details>
+        </details>
+      </section>
+      <section id="page-guide" class="page" hidden>
+        <h1>快速开始</h1><p class="subtitle">选身份，设预算，启动客户端。</p>
+        <div class="guide-grid"><article class="guide-card"><span class="guide-number">01 / 买家</span><h2>使用模型</h2><p>启动 buyer，领测试币并充值。选择卖家，审核通过后调用。</p><button class="text-button" data-go="faucet">领取测试币 ↗</button></article><article class="guide-card"><span class="guide-number">02 / 卖家</span><h2>出售 API</h2><p>接入模型来源，选 USDC 或 BEM，设置价格与买家权限，启动 seller。</p><a href="/skill.md" target="_blank" rel="noreferrer">查看接入步骤 ↗</a></article><article class="guide-card"><span class="guide-number">03 / AI Agent</span><h2>交给 AI 配置</h2><p>AI 安装与配置，你决定模型、币种和预算。</p><button class="text-button" data-go="ai">复制接入指令 ↗</button></article></div>
+        <div class="quick-links"><a class="primary" href="/skill.md" target="_blank" rel="noreferrer">查看完整指南 ↗</a><a class="wallet-button" href="/api/agent.json" target="_blank" rel="noreferrer">API / JSON ↗</a></div>
+        <details class="developer-details"><summary>开发者接口</summary><div class="code-panel"><div><strong>查询卖家与价格</strong><button class="text-button" id="copy-api">复制接口地址</button></div><pre><code id="api-code">GET /api/market</code></pre></div></details>
+      </section>
+      <section id="page-ai" class="page" hidden>
+        <h1>让你的 AI 帮你接入</h1><p class="subtitle">复制下面的指令，交给能操作本机的 AI。</p>
+        <div class="code-panel"><div><strong>接入指令</strong><button class="primary" id="copy-ai-prompt">复制指令</button></div><pre><code id="ai-prompt">请阅读 https://shenjige.xyz/skill.md，帮我安装并配置 Tapeout API Market。确认买家或卖家、USDC 或 BEM、模型与预算。登录与资金操作须经我授权。</code></pre></div>
+        <div class="steps"><div><b>1</b><strong>确认身份与预算</strong><p>买家用模型，卖家出售 API。</p></div><div><b>2</b><strong>安装与配置</strong><p>AI 下载客户端，准备本机节点。</p></div><div><b>3</b><strong>授权后开始</strong><p>你完成登录，确认权限和资金操作。</p></div></div>
+        <div class="quick-links"><a class="wallet-button" href="/skill.md" target="_blank" rel="noreferrer">完整 AI 指南 ↗</a><a class="wallet-button" href="/install.mjs" target="_blank" rel="noreferrer">安装脚本 ↗</a><a class="wallet-button" href="/downloads/latest.json" target="_blank" rel="noreferrer">客户端安装包 ↗</a></div><p class="requirements">Node.js 22+ · Windows / macOS / Linux</p>
+        <div class="note"><span aria-hidden="true">ⓘ</span><p>买家需卖家审核。私钥与模型账号留在本机。</p></div>
+      </section>
+      <footer><span>Tapeout API Market</span><span>BSC Testnet · Chain 97</span></footer>
+    </main>
+  </div>
+  <dialog id="seller-detail"><div class="dialog-header"><strong>卖家与结算信息</strong><button class="icon-button" id="close-detail" aria-label="关闭详情">×</button></div><div id="detail-content"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

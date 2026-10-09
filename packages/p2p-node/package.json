@@ -1,0 +1,41 @@
+{
+  "name": "@clawmarket/p2p-node",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "clean": "rm -rf dist",
+    "test:integration": "bash test/integration/run-test.sh"
+  },
+  "dependencies": {
+    "@chainsafe/libp2p-gossipsub": "^14.1.2",
+    "@chainsafe/libp2p-noise": "^17.0.0",
+    "@chainsafe/libp2p-yamux": "^8.0.1",
+    "@clawmarket/crypto": "workspace:*",
+    "@clawmarket/shared": "workspace:*",
+    "@libp2p/autonat": "^3.0.15",
+    "@libp2p/bootstrap": "^12.0.16",
+    "@libp2p/circuit-relay-v2": "^4.2.0",
+    "@libp2p/crypto": "^5.1.15",
+    "@libp2p/identify": "^4.1.0",
+    "@libp2p/interface": "^3.2.0",
+    "@libp2p/kad-dht": "^16.2.0",
+    "@libp2p/mdns": "^12.0.16",
+    "@libp2p/peer-id": "^6.0.6",
+    "@libp2p/ping": "^3.1.0",
+    "@libp2p/tcp": "^11.0.15",
+    "@libp2p/websockets": "^10.1.8",
+    "@multiformats/multiaddr": "^12.0.0",
+    "ethers": "^6.16.0",
+    "libp2p": "3.2.0",
+    "multiformats": "^13.4.2"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.4.0"
+  }
+}

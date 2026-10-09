@@ -1,0 +1,59 @@
+node_modules/
+.pnpm-store/
+dist/
+build/
+*.tsbuildinfo
+.env
+.env.local
+.env.*.local
+
+# Foundry
+packages/contracts/out/
+packages/contracts/cache/
+packages/contracts/broadcast/
+
+# Local data
+.clawmarket/
+.clawmarket-provider/
+.peer-id
+keystore/
+api-token
+tam-agent-token*
+wallet.json
+auths/
+
+# Logs
+*.log
+# Runtime validation evidence can contain wallets, hosts and screenshots.
+report/
+publication-backups/
+*.bundle
+# Keep the third-party contract source and license, not its upstream development data.
+packages/contracts/lib/openzeppelin-contracts/*
+!packages/contracts/lib/openzeppelin-contracts/contracts/
+!packages/contracts/lib/openzeppelin-contracts/LICENSE
+!packages/contracts/lib/openzeppelin-contracts/README.md
+!packages/contracts/lib/openzeppelin-contracts/package.json
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Python generated files
+__pycache__/
+*.py[cod]
+
+# Runtime
+*.pid
+
+# Private deployment environments
+.env.*
+*.env
+!.env.example
+!.env.*.example
+!*.env.example
+

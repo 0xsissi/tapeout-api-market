@@ -1,0 +1,17 @@
+[Unit]
+Description=Tapeout API Market (TAM) Buyer Gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/clawmarket-v2
+EnvironmentFile=/etc/clawmarket/buyer.env
+ExecStart=/usr/bin/npm run buyer:testnet
+Restart=always
+RestartSec=5
+User=clawmarket
+Group=clawmarket
+
+[Install]
+WantedBy=multi-user.target

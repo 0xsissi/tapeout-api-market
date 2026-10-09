@@ -1,0 +1,23 @@
+{
+  "name": "@clawmarket/mock-seller",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/mock-seller.js",
+  "types": "dist/mock-seller.d.ts",
+  "scripts": {
+    "build": "corepack pnpm --filter @clawmarket/shared build && corepack pnpm --filter @clawmarket/p2p-node build && corepack pnpm --filter @clawmarket/consumer-gateway build && tsup src/mock-seller.ts src/mock-cluster.ts src/scenario-runner.ts --format esm --dts",
+    "clean": "rm -rf dist",
+    "cluster": "node dist/mock-cluster.js",
+    "scenario-runner": "node dist/scenario-runner.js"
+  },
+  "dependencies": {
+    "@clawmarket/consumer-gateway": "workspace:*",
+    "@clawmarket/p2p-node": "workspace:*",
+    "@clawmarket/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  }
+}

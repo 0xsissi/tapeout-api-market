@@ -1,0 +1,17 @@
+[Unit]
+Description=Tapeout API Market (TAM) Bootstrap Relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/clawmarket-v2
+EnvironmentFile=/etc/clawmarket/bootstrap.env
+ExecStart=/usr/bin/npm run bootstrap:testnet
+Restart=always
+RestartSec=5
+User=clawmarket
+Group=clawmarket
+
+[Install]
+WantedBy=multi-user.target

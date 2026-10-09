@@ -1,0 +1,12 @@
+{
+  "model": "gpt-6-luna",
+  "checkedOn": "2026-10-07",
+  "source": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+  "referenceTier": "Standard, short context, uncached text tokens",
+  "unit": "per 1 million tokens",
+  "officialUsd": { "input": "0.10", "output": "0.50" },
+  "discount": { "numerator": 1, "denominator": 5 },
+  "settlement": { "currency": "USDC", "chainId": 97, "minimumAmount": "0.000001" },
+  "sellerPricing": { "model": "gpt-6-luna", "inputPer1m": 0.02, "outputPer1m": 0.10, "p0": 0.06, "alpha": 0, "quotePriceCeiling": 0.06 },
+  "note": "Testnet settles in project tUSDC. Cached-input discounts, long-context tiers and external tools are not separately priced by this pilot."
+}
